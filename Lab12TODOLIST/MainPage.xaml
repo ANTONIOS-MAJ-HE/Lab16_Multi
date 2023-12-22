@@ -1,0 +1,32 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Lab12TODOLIST.ViewModels"
+             x:Class="Lab12TODOLIST.Views.MainPage">
+
+    <ContentPage.BindingContext>
+        <vm:CursoViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <CollectionView ItemsSource="{Binding Cursos}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="10" Padding="5" BorderColor="Gray" CornerRadius="10">
+                        <StackLayout>
+                            <Image Source="{Binding Imagen}" Aspect="AspectFill" HeightRequest="200"/>
+                            <Label Text="{Binding Nombre}" FontSize="Large" FontAttributes="Bold"/>
+                            <Label Text="{Binding Docente}" FontSize="Medium"/>
+                            <Label Text="{Binding Ciclo}" FontSize="Small"/>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Entry Text="{Binding NewCurso.Imagen}" Placeholder="Imagen URL"/>
+        <Entry Text="{Binding NewCurso.Nombre}" Placeholder="Nombre del curso"/>
+        <Entry Text="{Binding NewCurso.Docente}" Placeholder="Docente"/>
+        <Entry Text="{Binding NewCurso.Ciclo}" Placeholder="Ciclo"/>
+        <Button Text="Agregar Curso" Command="{Binding AddCursoCommand}"/>
+    </StackLayout>
+</ContentPage>
